@@ -12,4 +12,8 @@ npm start
 ```
 npm run build
 ```
+Для генерации сетки Smart-grid Дмитрия Лаврика
+```
+npm run build
+```
 Основано на [этом репозитории](https://github.com/NatatkaValikowsky/webpack-static-template)
