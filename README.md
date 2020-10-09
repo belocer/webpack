@@ -14,6 +14,6 @@ npm run build
 ```
 Для генерации сетки Smart-grid Дмитрия Лаврика
 ```
-npm run build
+node smartgrid.js
 ```
 Основано на [этом репозитории](https://github.com/NatatkaValikowsky/webpack-static-template)
