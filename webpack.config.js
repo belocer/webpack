@@ -1,7 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -45,33 +47,35 @@ module.exports = {
       },
       { // SASS
         test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader',],
+        use: ['style-loader', 'css-loader', 'sass-loader', ],
       },
 
       // Подключаем шрифты из css
       {
         test: /\.(eot|ttf|woff|woff2)$/,
-        use: [
-          {
-            loader: 'file-loader?name=./fonts/[name].[ext]'
-          },
-        ]
+        use: [{
+          loader: 'file-loader?name=./fonts/[name].[ext]'
+        }, ]
+      },
+
+      // Подключаем HTML
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
       },
 
       // Подключаем картинки из css
       {
         test: /\.(svg|png|jpg|jpeg|webp)$/,
-        use: [
-          {
-            loader: 'file-loader?name=./static/[name].[ext]'
-          },
-        ]
+        use: [{
+          loader: 'file-loader?name=./static/[name].[ext]'
+        }, ]
       },
     ],
   },
   plugins: [
     // Подключаем файл html, стили и скрипты встроятся автоматически
-    new HtmlWebpackPlugin({
+    /* new HtmlWebpackPlugin({
       title: 'Webpack 4 Starter',
       template: './src/index.html',
       inject: true,
@@ -79,6 +83,25 @@ module.exports = {
         removeComments: true,
         collapseWhitespace: false,
       }
+    }), */
+
+    new HtmlWebpackPlugin({
+      title: '0',
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: 'body',
+    }),
+    new HtmlWebpackPlugin({
+      title: '1',
+      template: './src/index1.html',
+      filename: 'index1.html',
+      inject: 'body',
+    }),
+    new HtmlWebpackPlugin({
+      title: '2',
+      template: './src/index2.html',
+      filename: 'index2.html',
+      inject: 'body',
     }),
 
     // Кладем стили в отдельный файлик
@@ -89,11 +112,9 @@ module.exports = {
     new CleanWebpackPlugin(),
 
     // Копируем картинки
-    new CopyWebpackPlugin([
-      {
-        from: './src/img',
-        to: 'img',
-      },
-    ])
+    new CopyWebpackPlugin([{
+      from: './src/img',
+      to: 'img',
+    }, ])
   ],
 };
